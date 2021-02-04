@@ -3,8 +3,9 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Dashboard from "../views/Dashboard.vue";
 import AccountsOverview from "../views/AccountsOverview.vue";
-import AccountView from "../views/AccountView.vue"
-import NewTransaction from "../views/NewTransaction.vue"
+import AccountView from "../views/AccountView.vue";
+import NewTransaction from "../views/NewTransaction.vue";
+import NewAccount from "../views/NewAccount.vue";
 import store from "../store";
 
 Vue.use(VueRouter);
@@ -24,6 +25,22 @@ const routes = [
     },
   },
   {
+    path: "/accounts/new",
+    name: "NewAccount",
+    component: NewAccount,
+    meta: {
+      requiresAuthentication: true,
+    },
+  },
+  {
+    path: "/transaction/new",
+    name: "NewTransaction",
+    component: NewTransaction,
+    meta: {
+      requiresAuthentication: true,
+    },
+  },
+  {
     path: "/accounts",
     name: "AccountsOverview",
     component: AccountsOverview,
@@ -35,14 +52,6 @@ const routes = [
     path: "/accounts/:id",
     name: "AccountView",
     component: AccountView,
-    meta: {
-      requiresAuthentication: true,
-    },
-  },
-  {
-    path: "/transaction/new",
-    name: "NewTransaction",
-    component: NewTransaction,
     meta: {
       requiresAuthentication: true,
     },
