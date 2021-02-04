@@ -1,0 +1,36 @@
+<template>
+  <div>
+    <v-app-bar class="px-3" app color="primary" dark>
+      <v-btn icon @click="toggleDrawer">
+        <v-icon>mdi-menu</v-icon>
+      </v-btn>
+      <v-spacer />
+      <v-btn icon>
+        <v-icon>mdi-logout</v-icon>
+      </v-btn>
+    </v-app-bar>
+    <SideDrawer :drawer.sync="drawer" />
+  </div>
+</template>
+
+<script>
+import SideDrawer from "./SideDrawer";
+
+export default {
+  name: "AppBar",
+  components: {
+    SideDrawer,
+  },
+  props: {
+    drawer: {
+      type: Boolean,
+      required: true
+    }
+  },
+  methods: {
+    toggleDrawer(){
+      this.$emit('update:drawer', !this.drawer)
+    }
+  }
+};
+</script>
