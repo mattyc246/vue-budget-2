@@ -2,7 +2,7 @@ export const UserModule = {
   namespaced: true,
 
   state: {
-    user: null,
+    user: true,
   },
 
   // Mutations are functions that effect the STATE

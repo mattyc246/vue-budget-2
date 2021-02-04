@@ -1,8 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Dashboard from "../views/Dashboard.vue"
-import AccountsOverview from "../views/AccountsOverview.vue"
+import Dashboard from "../views/Dashboard.vue";
+import AccountsOverview from "../views/AccountsOverview.vue";
+import store from "../store";
 
 Vue.use(VueRouter);
 
@@ -36,16 +37,17 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  const user = true
+  const user = store.state.User.user;
 
-  const requiresAuthentication = to.matched.some((record) => record.meta.requiresAuthentication);
+  const requiresAuthentication = to.matched.some(
+    (record) => record.meta.requiresAuthentication
+  );
 
   if (requiresAuthentication && !user) {
     next({ name: "Home" });
   } else {
     next();
   }
-
-})
+});
 
 export default router;

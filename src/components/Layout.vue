@@ -1,6 +1,6 @@
 <template>
   <div class="layout__container">
-    <AppBar :drawer.sync="drawer" />
+    <AppBar :drawer.sync="drawer" v-if="user"/>
     <div class="pa-3 layout__drawer-avoiding-content" :class="drawer ? 'drawer-open' : ''">
       <slot />
     </div>
@@ -14,6 +14,11 @@ export default {
   name: "Layout",
   components: {
     AppBar,
+  },
+  computed: {
+    user(){
+      return this.$store.state.User.user
+    }
   },
   data (){
     return {

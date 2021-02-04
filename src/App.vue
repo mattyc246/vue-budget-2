@@ -1,15 +1,21 @@
 <template>
   <v-app>
     <v-main>
-      <router-view />
+      <Layout>
+        <router-view />
+      </Layout>
     </v-main>
   </v-app>
 </template>
 
 <script>
+import Layout from "./components/Layout";
+
 export default {
   name: "App",
-
+  components: {
+    Layout,
+  },
   data: () => ({
     //
   }),
