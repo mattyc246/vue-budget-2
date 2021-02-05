@@ -16,8 +16,8 @@ export const AccountModule = {
 
   // Actions are functions that you caall throughout your application that call mutations
   actions: {
+    // eslint-disable-next-line no-unused-vars
     async createAccount({ state }, account) {
-      console.log(state);
       await fb.accountsCollection.add({
         createdOn: new Date(),
         name: account.accountName,
@@ -26,21 +26,21 @@ export const AccountModule = {
         userId: fb.auth.currentUser.uid,
       });
     },
-    async fetchUserAccounts({commit}, user){
-      const userAccounts = []
+    async fetchUserAccounts({ commit }, user) {
+      const userAccounts = [];
 
       const docs = await fb.accountsCollection
         .where("userId", "==", user.uid)
         .orderBy("createdOn", "asc")
         .get();
 
-      docs.forEach(doc => {
-        let account = doc.data()
-        account.id = doc.id
-        userAccounts.push(account)
-      })
+      docs.forEach((doc) => {
+        let account = doc.data();
+        account.id = doc.id;
+        userAccounts.push(account);
+      });
 
       commit("setAccounts", userAccounts);
-    }
+    },
   },
 };

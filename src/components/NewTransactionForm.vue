@@ -23,20 +23,29 @@
     <v-container class="keypad__container">
       <v-row>
         <v-col :key="key" cols="4" v-for="key in keypad">
-          <v-btn class="center-button" color="secondary" @click.stop="handleKeypad(key)">
+          <v-btn
+            class="center-button"
+            color="secondary"
+            @click.stop="handleKeypad(key)"
+          >
             {{ key }}
           </v-btn>
         </v-col>
       </v-row>
     </v-container>
     <div class="d-flex justify-center my-5">
-      <v-btn type="submit" color="primary" elevation="5">Add Transaction</v-btn>
+      <v-btn type="submit" color="primary" elevation="5" :disabled="formValid"
+        >Add Transaction</v-btn
+      >
     </div>
   </v-form>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import * as fb from "../utils/firebase";
+import router from "../router";
+
 export default {
   name: "TransactionForm",
   data() {
@@ -55,21 +64,39 @@ export default {
     displayAmount() {
       return (parseInt(this.transactionData.amount) / 100).toFixed(2);
     },
+    formValid() {
+      const { accountNo, type, amount } = this.transactionData;
+      const valid = accountNo !== "" && !type !== "" && amount !== "0";
+
+      return !valid;
+    },
   },
   methods: {
-    handleKeypad(key){
-      if(key === 'del'){
-        if(this.transactionData.amount != '0'){
-          this.transactionData.amount = this.transactionData.amount.slice(0, -1)
+    handleKeypad(key) {
+      if (key === "del") {
+        if (this.transactionData.amount != "0") {
+          this.transactionData.amount = this.transactionData.amount.slice(
+            0,
+            -1
+          );
         }
       } else {
-        this.transactionData.amount = this.transactionData.amount + key
+        this.transactionData.amount = this.transactionData.amount + key;
       }
     },
-    handleSubmit(){
+    async handleSubmit() {
+      const { accountNo, type, amount } = this.transactionData;
+      await fb.transactionsCollection.add({
+        createdOn: new Date(),
+        accountId: accountNo,
+        type: type,
+        amount: type === "Income" ? +amount : -amount,
+        userId: fb.auth.currentUser.uid,
+      });
 
-    }
-  }
+      router.push(`/accounts/${accountNo}`);
+    },
+  },
 };
 </script>
 
