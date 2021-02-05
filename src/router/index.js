@@ -6,7 +6,7 @@ import AccountsOverview from "../views/AccountsOverview.vue";
 import AccountView from "../views/AccountView.vue";
 import NewTransaction from "../views/NewTransaction.vue";
 import NewAccount from "../views/NewAccount.vue";
-import store from "../store";
+import { auth } from "../utils/firebase"
 
 Vue.use(VueRouter);
 
@@ -21,7 +21,7 @@ const routes = [
     name: "Dashboard",
     component: Dashboard,
     meta: {
-      requiresAuthentication: true,
+      requiresAuth: true,
     },
   },
   {
@@ -29,7 +29,7 @@ const routes = [
     name: "NewAccount",
     component: NewAccount,
     meta: {
-      requiresAuthentication: true,
+      requiresAuth: true,
     },
   },
   {
@@ -37,7 +37,7 @@ const routes = [
     name: "NewTransaction",
     component: NewTransaction,
     meta: {
-      requiresAuthentication: true,
+      requiresAuth: true,
     },
   },
   {
@@ -45,7 +45,7 @@ const routes = [
     name: "AccountsOverview",
     component: AccountsOverview,
     meta: {
-      requiresAuthentication: true,
+      requiresAuth: true,
     },
   },
   {
@@ -53,7 +53,7 @@ const routes = [
     name: "AccountView",
     component: AccountView,
     meta: {
-      requiresAuthentication: true,
+      requiresAuth: true,
     },
   },
 ];
@@ -64,13 +64,11 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  const user = store.state.User.user;
-
-  const requiresAuthentication = to.matched.some(
-    (record) => record.meta.requiresAuthentication
+  const requiresAuth = to.matched.some(
+    (record) => record.meta.requiresAuth
   );
 
-  if (requiresAuthentication && !user) {
+  if (requiresAuth && !auth.currentUser) {
     next({ name: "Home" });
   } else {
     next();

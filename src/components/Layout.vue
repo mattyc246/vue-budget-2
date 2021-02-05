@@ -1,7 +1,10 @@
 <template>
   <div class="layout__container">
-    <AppBar :drawer.sync="drawer" v-if="user"/>
-    <div class="pa-3 layout__drawer-avoiding-content" :class="drawer ? 'drawer-open' : ''">
+    <AppBar :drawer.sync="drawer" v-if="showNav" />
+    <div
+      class="pa-3 layout__drawer-avoiding-content"
+      :class="drawer ? 'drawer-open' : ''"
+    >
       <slot />
     </div>
   </div>
@@ -9,6 +12,7 @@
 
 <script>
 import AppBar from "./AppBar.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "Layout",
@@ -16,15 +20,16 @@ export default {
     AppBar,
   },
   computed: {
-    user(){
-      return this.$store.state.User.user
-    }
+    ...mapState("User", ["userProfile"]),
+    showNav() {
+      return Object.keys(this.userProfile).length > 0;
+    },
   },
-  data (){
+  data() {
     return {
-      drawer: false
-    }
-  }
+      drawer: false,
+    };
+  },
 };
 </script>
 

@@ -14,10 +14,10 @@
         </v-list-item-avatar>
       </v-list-item>
 
-      <v-list-item link>
+      <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="title"> John Smith </v-list-item-title>
-          <v-list-item-subtitle>johnsmith@gmail.com</v-list-item-subtitle>
+          <v-list-item-title class="title"> {{ name }} </v-list-item-title>
+          <v-list-item-subtitle> {{ email }} </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -36,6 +36,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import { auth } from "../utils/firebase"
+
 export default {
   name: "SideDrawer",
   props: {
@@ -43,6 +46,15 @@ export default {
       type: Boolean,
       required: true,
     },
+  },
+  computed: {
+    ...mapState('User', ['userProfile']),
+    name(){
+      return this.userProfile.name
+    },
+    email(){
+      return auth.currentUser.email
+    }
   },
   data() {
     return {
