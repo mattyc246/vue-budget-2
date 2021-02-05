@@ -34,18 +34,19 @@ export default {
     this.fetchTransactions();
   },
   methods: {
-    async fetchTransactions() {
+    fetchTransactions() {
       const accountId = this.$route.params.id;
 
-      const docs = await fb.transactionsCollection
+      fb.transactionsCollection
         .where("accountId", "==", accountId)
-        .get();
-
-      docs.forEach((doc) => {
-        let transaction = doc.data();
-        transaction.id == doc.id;
-        this.transactions.push(transaction);
-      });
+        .onSnapshot((snapshot) => {
+          snapshot.forEach((doc) => {
+            let transaction = doc.data();
+            transaction.id = doc.id;
+            console.log(transaction);
+            this.transactions.push(transaction);
+          });
+        });
     },
   },
 };
