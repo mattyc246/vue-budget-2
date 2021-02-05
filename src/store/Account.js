@@ -29,7 +29,10 @@ export const AccountModule = {
     async fetchUserAccounts({commit}, user){
       const userAccounts = []
 
-      const docs = await fb.accountsCollection.where('userId', '==', user.uid).get();
+      const docs = await fb.accountsCollection
+        .where("userId", "==", user.uid)
+        .orderBy("createdOn", "asc")
+        .get();
 
       docs.forEach(doc => {
         let account = doc.data()
