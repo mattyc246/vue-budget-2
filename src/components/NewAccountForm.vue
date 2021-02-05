@@ -57,10 +57,6 @@ export default {
   },
   methods: {
     handleSubmit() {
-      alert(
-        `${this.formData.accountName}, ${this.formData.accountType}, ${this.formData.accountCurrency}`
-      );
-
       this.$store.dispatch("Account/createAccount", this.formData);
       this.formData = {
         accountName: "",
