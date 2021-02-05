@@ -3,6 +3,7 @@
     :headers="headers"
     :items="transactions"
     :items-per-page="5"
+    :search="search"
     class="elevation-5 mx-5"
   >
     <template v-slot:[`item.id`]="{ item }">
@@ -34,6 +35,10 @@ export default {
   props: {
     transactions: {
       type: Array,
+      required: true,
+    },
+    search: {
+      type: String,
       required: true,
     },
   },

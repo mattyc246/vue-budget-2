@@ -7,7 +7,14 @@
     >
       No Transactions Yet!
     </h2>
-    <TransactionTable :transactions="transactions" v-else />
+    <div v-else>
+      <v-text-field
+        class="account-view__search mx-5"
+        v-model="search"
+        label="Search"
+      ></v-text-field>
+      <TransactionTable :transactions="transactions" :search="search" />
+    </div>
   </div>
 </template>
 
@@ -23,6 +30,7 @@ export default {
   data() {
     return {
       transactions: [],
+      search: "",
     };
   },
   computed: {
@@ -65,5 +73,13 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.account-view__search {
+  width: 80%;
+
+  @media screen and (min-width: 960px) {
+    width: 50%;
+  }
 }
 </style>
