@@ -6,7 +6,6 @@
     temporary
     stateless
     hide-overlay
-    mobile-breakpoint="960px"
   >
     <v-list>
       <v-list-item class="px-2">
@@ -26,7 +25,12 @@
     <v-divider></v-divider>
 
     <v-list nav dense>
-      <v-list-item v-bind:key="index" :to="item.to" v-for="(item, index) in items" exact>
+      <v-list-item
+        v-bind:key="index"
+        :to="item.to"
+        v-for="(item, index) in items"
+        exact
+      >
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-icon>
@@ -37,8 +41,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import { auth } from "../utils/firebase"
+import { mapState } from "vuex";
+import { auth } from "../utils/firebase";
 
 export default {
   name: "SideDrawer",
@@ -49,21 +53,25 @@ export default {
     },
   },
   computed: {
-    ...mapState('User', ['userProfile']),
-    name(){
-      return this.userProfile.name
+    ...mapState("User", ["userProfile"]),
+    name() {
+      return this.userProfile.name;
     },
-    email(){
-      return auth.currentUser.email
-    }
+    email() {
+      return auth.currentUser.email;
+    },
   },
   data() {
     return {
       items: [
         { title: "Overview", to: "/dashboard", icon: "mdi-view-dashboard" },
-        { title: "My Accounts", to:"/accounts", icon: "mdi-wallet" },
-        { title: "Add Account", to:"/accounts/new", icon: "mdi-wallet-plus" },
-        { title: "Add Transaction", to:"/transactions/new", icon: "mdi-credit-card-plus" },
+        { title: "My Accounts", to: "/accounts", icon: "mdi-wallet" },
+        { title: "Add Account", to: "/accounts/new", icon: "mdi-wallet-plus" },
+        {
+          title: "Add Transaction",
+          to: "/transactions/new",
+          icon: "mdi-credit-card-plus",
+        },
       ],
       right: null,
     };

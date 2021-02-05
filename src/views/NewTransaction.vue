@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import NewTransactionForm from "../components/NewTransactionForm"
+import NewTransactionForm from "../components/NewTransactionForm";
 
 export default {
   name: "NewTransaction",
   components: {
-     NewTransactionForm
-  }
+    NewTransactionForm,
+  },
 };
 </script>
 
@@ -22,6 +22,7 @@ export default {
 .newtransaction__container {
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
 }
 
 .newtransaction__card {
