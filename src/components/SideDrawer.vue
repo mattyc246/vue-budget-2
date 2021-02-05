@@ -1,26 +1,36 @@
 <template>
-  <v-navigation-drawer v-model="drawer" absolute bottom temporary stateless hide-overlay>
+  <v-navigation-drawer
+    v-model="drawer"
+    absolute
+    bottom
+    temporary
+    stateless
+    hide-overlay
+  >
+    <v-list>
+      <v-list-item class="px-2">
+        <v-list-item-avatar>
+          <v-img src="https://randomuser.me/api/portraits/men/15.jpg"></v-img>
+        </v-list-item-avatar>
+      </v-list-item>
+
+      <v-list-item link>
+        <v-list-item-content>
+          <v-list-item-title class="title"> John Smith </v-list-item-title>
+          <v-list-item-subtitle>johnsmith@gmail.com</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+
+    <v-divider></v-divider>
+
     <v-list nav dense>
-      <v-list-item-group
-        v-model="group"
-        active-class="deep-purple--text text--accent-4"
-      >
-        <v-list-item>
-          <v-list-item-title>Foo</v-list-item-title>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-title>Bar</v-list-item-title>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-title>Fizz</v-list-item-title>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-title>Buzz</v-list-item-title>
-        </v-list-item>
-      </v-list-item-group>
+      <v-list-item v-bind:key="index" :to="item.to" v-for="(item, index) in items" exact>
+        <v-list-item-icon>
+          <v-icon>{{ item.icon }}</v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>{{ item.title }}</v-list-item-title>
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -37,9 +47,10 @@ export default {
   data() {
     return {
       items: [
-        { title: "Dashboard", icon: "mdi-view-dashboard" },
-        { title: "Photos", icon: "mdi-image" },
-        { title: "About", icon: "mdi-help-box" },
+        { title: "Overview", to: "/dashboard", icon: "mdi-view-dashboard" },
+        { title: "My Accounts", to:"/accounts", icon: "mdi-wallet" },
+        { title: "Add Account", to:"/accounts/new", icon: "mdi-wallet-plus" },
+        { title: "Add Transaction", to:"/transactions/new", icon: "mdi-credit-card-plus" },
       ],
       right: null,
     };
