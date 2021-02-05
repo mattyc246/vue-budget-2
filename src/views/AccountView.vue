@@ -1,6 +1,5 @@
 <template>
   <div class="account-view__container">
-    <h1 class="my-5 text-center">Account View</h1>
     <AccountSummary :transactions="transactions" :account="account" />
     <h2
       class="account-view__no-transaction-warning"

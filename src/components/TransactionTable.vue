@@ -49,12 +49,6 @@ export default {
         { text: "Type", value: "type" },
         { text: "Amount", value: "amount" },
         { text: "Transaction Date", value: "createdOn" },
-        {
-          text: "ID",
-          align: "start",
-          sortable: false,
-          value: "id",
-        },
       ],
     };
   },
