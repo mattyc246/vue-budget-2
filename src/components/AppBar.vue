@@ -5,7 +5,7 @@
         <v-icon>mdi-menu</v-icon>
       </v-btn>
       <v-spacer />
-      <v-btn icon>
+      <v-btn icon @click="logout">
         <v-icon>mdi-logout</v-icon>
       </v-btn>
     </v-app-bar>
@@ -30,6 +30,9 @@ export default {
   methods: {
     toggleDrawer(){
       this.$emit('update:drawer', !this.drawer)
+    },
+    logout(){
+      this.$store.dispatch('User/logout')
     }
   }
 };

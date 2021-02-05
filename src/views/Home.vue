@@ -1,13 +1,14 @@
 <template>
   <div class="home__container d-flex justify-center align-center">
-    <v-card class="px-5 pb-5 home__card" elevation="10" outlined :loading="submitting">
+    <v-card
+      class="px-5 pb-5 home__card"
+      elevation="10"
+      outlined
+      :loading="submitting"
+    >
       <h2 class="text-center mt-5">Sign In</h2>
       <v-form class="mt-5" v-on:submit.prevent="handleSubmit">
-        <v-text-field
-          label="Username"
-          outlined
-          v-model="username"
-        ></v-text-field>
+        <v-text-field label="Email" outlined v-model="email"></v-text-field>
         <v-text-field
           type="password"
           label="Password"
@@ -22,7 +23,7 @@
             elevation="5"
             large
             :loading="submitting"
-            :disabled="!username || !password ? true : false"
+            :disabled="!email || !password ? true : false"
             >Sign In</v-btn
           >
         </div>
@@ -36,17 +37,21 @@ export default {
   name: "Home",
   data: function () {
     return {
-      username: "",
+      email: "",
       password: "",
       submitting: false,
     };
   },
   methods: {
     handleSubmit: function () {
-      this.submitting = true
+      this.submitting = true;
+      this.$store.dispatch("User/login", {
+        email: this.email,
+        password: this.password,
+      });
       setTimeout(() => {
-        this.submitting = false
-      }, 3000)
+        this.submitting = false;
+      }, 3000);
     },
   },
 };

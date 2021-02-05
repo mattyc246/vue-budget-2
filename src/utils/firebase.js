@@ -1,6 +1,6 @@
-import * as firebase from "firebase/app"
-import "firebase/auth"
-import "firebase/firestore"
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA3m6XN7a18ipOMbmWEb_6VlPSBu8NHswo",
@@ -12,19 +12,19 @@ const firebaseConfig = {
   measurementId: "G-X5T8Q2H9DC",
 };
 
-firebase.initializeApp(firebaseConfig)
+firebase.initializeApp(firebaseConfig);
 
-const db = firebase.firestore()
-const auth = firebase.auth()
+const db = firebase.firestore();
+const auth = firebase.auth();
 
-const usersCollection = db.collection('users')
-const accountsCollection = db.collection('accounts')
-const transactionsCollection = db.collection('transactions')
+const usersCollection = db.collection("users");
+const accountsCollection = db.collection("accounts");
+const transactionsCollection = db.collection("transactions");
 
 export {
   db,
   auth,
   usersCollection,
   accountsCollection,
-  transactionsCollection
-}
+  transactionsCollection,
+};
