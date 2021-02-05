@@ -45,8 +45,11 @@ export default {
   overflow-y: scroll;
 
   &.drawer-open {
-    margin-left: 256px;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    @media screen and (min-width: 960px) {
+      width: calc(100% - 256px);
+      margin-left: 256px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
   }
 }
 </style>
