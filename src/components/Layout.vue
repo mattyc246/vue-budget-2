@@ -41,8 +41,12 @@ export default {
 
 .layout__drawer-avoiding-content {
   width: 100%;
-  height: 100%;
-  overflow-y: scroll;
+  height: calc(100vh - 56px);
+  overflow-y: hidden;
+
+  @media screen and (min-width: 960px){
+    height: calc(100vh - 64px);
+  }
 
   &.drawer-open {
     @media screen and (min-width: 960px) {

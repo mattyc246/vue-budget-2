@@ -6,6 +6,7 @@
     temporary
     stateless
     hide-overlay
+    mobile-breakpoint="960px"
   >
     <v-list>
       <v-list-item class="px-2">
