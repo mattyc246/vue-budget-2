@@ -21,6 +21,7 @@ auth.onAuthStateChanged((user) => {
 
   if(user){
     store.dispatch('User/fetchUserProfile', user)
+    store.dispatch('Account/fetchUserAccounts', user)
   }
 })
 
