@@ -15,6 +15,11 @@
       v-model="transactionData.type"
     ></v-select>
     <v-text-field
+      label="Description"
+      outlined
+      v-model="transactionData.description"
+    ></v-text-field>
+    <v-text-field
       label="Amount"
       outlined
       readonly
@@ -51,6 +56,7 @@ export default {
   data() {
     return {
       transactionData: {
+        description: "",
         accountNo: "",
         type: "",
         amount: "0",
@@ -65,8 +71,9 @@ export default {
       return (parseInt(this.transactionData.amount) / 100).toFixed(2);
     },
     formValid() {
-      const { accountNo, type, amount } = this.transactionData;
-      const valid = accountNo !== "" && !type !== "" && amount !== "0";
+      const { accountNo, type, amount, description } = this.transactionData;
+      const valid =
+        accountNo !== "" && type !== "" && description !== "" && amount !== "0";
 
       return !valid;
     },
@@ -85,16 +92,25 @@ export default {
       }
     },
     async handleSubmit() {
-      const { accountNo, type, amount } = this.transactionData;
-      await fb.transactionsCollection.add({
-        createdOn: new Date(),
-        accountId: accountNo,
-        type: type,
-        amount: type === "Income" ? +amount : -amount,
-        userId: fb.auth.currentUser.uid,
-      });
-
-      router.push(`/accounts/${accountNo}`);
+      const { accountNo, type, amount, description } = this.transactionData;
+      await fb.transactionsCollection
+        .add({
+          createdOn: new Date(),
+          accountId: accountNo,
+          description: description,
+          type: type,
+          amount: type === "Income" ? +amount : -amount,
+          userId: fb.auth.currentUser.uid,
+        })
+        .then(() => {
+          this.transactionData = {
+            description: "",
+            accountNo: "",
+            type: "",
+            amount: "0",
+          };
+          router.push(`/accounts/${accountNo}`);
+        });
     },
   },
 };

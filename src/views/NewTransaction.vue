@@ -1,6 +1,5 @@
 <template>
-  <div class="newtransaction__container d-flex flex-column align-center">
-    <h1 class="my-5">Add Transaction</h1>
+  <div class="newtransaction__container d-flex flex-column justify-center align-center">
     <v-card class="pa-5 newtransaction__card" elevation="10" outlined>
       <NewTransactionForm />
     </v-card>
@@ -8,13 +7,13 @@
 </template>
 
 <script>
-import NewTransactionForm from "../components/NewTransactionForm"
+import NewTransactionForm from "../components/NewTransactionForm";
 
 export default {
   name: "NewTransaction",
   components: {
-     NewTransactionForm
-  }
+    NewTransactionForm,
+  },
 };
 </script>
 
@@ -22,6 +21,7 @@ export default {
 .newtransaction__container {
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
 }
 
 .newtransaction__card {

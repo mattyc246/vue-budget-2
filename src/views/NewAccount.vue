@@ -1,8 +1,5 @@
 <template>
-  <div class="newaccount__container d-flex flex-column align-center">
-    <h1 class="text-center my-5">
-      Add New Account
-    </h1>
+  <div class="newaccount__container d-flex flex-column justify-center align-center">
     <NewAccountForm />
   </div>
 </template>
