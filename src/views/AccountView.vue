@@ -1,6 +1,7 @@
 <template>
   <div class="account-view__container">
     <h1 class="my-5 text-center">Account View</h1>
+    <AccountSummary :transactions="transactions" :account="account" />
     <h2
       class="account-view__no-transaction-warning"
       v-if="transactionCount === 0"
@@ -21,15 +22,18 @@
 <script>
 import * as fb from "../utils/firebase";
 import TransactionTable from "../components/TransactionTable";
+import AccountSummary from "../components/AccountSummary"
 
 export default {
   name: "AccountView",
   components: {
     TransactionTable,
+    AccountSummary
   },
   data() {
     return {
       transactions: [],
+      account: {},
       search: "",
     };
   },
@@ -39,11 +43,13 @@ export default {
     },
   },
   mounted() {
-    this.fetchTransactions();
+    const accountId = this.$route.params.id;
+
+    this.fetchTransactions(accountId);
+    this.fetchAccount(accountId)
   },
   methods: {
-    fetchTransactions() {
-      const accountId = this.$route.params.id;
+    fetchTransactions(accountId) {
 
       fb.transactionsCollection
         .where("accountId", "==", accountId)
@@ -56,6 +62,13 @@ export default {
           });
         });
     },
+    fetchAccount(accountId){
+      fb.accountsCollection.doc(accountId).onSnapshot(snapshot => {
+        let account = snapshot.data()
+        account.id = snapshot.id
+        this.account = account
+      })
+    }
   },
 };
 </script>
