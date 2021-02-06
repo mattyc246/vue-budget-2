@@ -49,12 +49,17 @@ export default {
       fb.transactionsCollection
         .where("accountId", "==", accountId)
         .onSnapshot((snapshot) => {
-          snapshot.forEach((doc) => {
-            let transaction = doc.data();
-            transaction.id = doc.id;
-            console.log(transaction);
-            this.transactions.push(transaction);
-          });
+          if (snapshot.size > 0) {
+            this.transactions = [];
+
+            snapshot.forEach((doc) => {
+              let transaction = doc.data();
+              transaction.id = doc.id;
+              this.transactions.push(transaction);
+            });
+          } else {
+            this.transactions = [];
+          }
         });
     },
     fetchAccount(accountId) {

@@ -92,8 +92,6 @@ export default {
         .filter((t) => t.type == "Outgoing")
         .map((t) => t.amount);
 
-      console.log(amounts);
-
       let sum = amounts.reduce((a, b) => a + b, 0);
 
       return sum;
