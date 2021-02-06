@@ -23,24 +23,25 @@ export const AccountModule = {
         name: account.accountName,
         type: account.accountType,
         currency: account.accountCurrency,
+        boxColor: account.boxColor,
         userId: fb.auth.currentUser.uid,
       });
     },
     async fetchUserAccounts({ commit }, user) {
-      const userAccounts = [];
-
-      const docs = await fb.accountsCollection
+      await fb.accountsCollection
         .where("userId", "==", user.uid)
         .orderBy("createdOn", "asc")
-        .get();
+        .onSnapshot((docs) => {
+          const userAccounts = [];
 
-      docs.forEach((doc) => {
-        let account = doc.data();
-        account.id = doc.id;
-        userAccounts.push(account);
-      });
+          docs.forEach((doc) => {
+            let account = doc.data();
+            account.id = doc.id;
+            userAccounts.push(account);
+          });
 
-      commit("setAccounts", userAccounts);
+          commit("setAccounts", userAccounts);
+        });
     },
   },
 };

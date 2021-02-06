@@ -2,6 +2,7 @@
   <v-card
     :to="`/accounts/${account.id}`"
     class="pa-5 d-flex flex-column align-center justify-center"
+    :color="account.boxColor"
     elevation="10"
     outlined
   >

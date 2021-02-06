@@ -1,21 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { UserModule } from "./User";
-import { AccountModule } from "./Account"
-import * as fb from "../utils/firebase"
-
-fb.accountsCollection.orderBy("createdOn", "asc").onSnapshot((snapshot) => {
-  let accountsArray = [];
-
-  snapshot.forEach((doc) => {
-    let account = doc.data();
-    account.id = doc.id;
-
-    accountsArray.push(account);
-  });
-
-  store.commit("Account/setAccounts", accountsArray);
-});
+import { AccountModule } from "./Account";
 
 Vue.use(Vuex);
 
@@ -30,7 +16,7 @@ const store = new Vuex.Store({
 
   modules: {
     User: UserModule,
-    Account: AccountModule
+    Account: AccountModule,
   },
 });
 
