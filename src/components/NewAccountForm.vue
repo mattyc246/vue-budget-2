@@ -29,7 +29,13 @@
             dark and light mode.
           </p>
           <div class="d-flex justify-center">
-            <v-btn type="submit" color="primary" elevation="10" large>
+            <v-btn
+              type="submit"
+              color="primary"
+              elevation="10"
+              :disabled="!formValid"
+              large
+            >
               Add New Account
             </v-btn>
           </div>
@@ -91,8 +97,17 @@ export default {
         accountName: "",
         accountType: "",
         accountCurrency: "",
-        boxColor: "#1E1E1E"
+        boxColor: "#1E1E1E",
       };
+    },
+  },
+  computed: {
+    formValid() {
+      return (
+        this.formData.accountName &&
+        this.formData.accountType &&
+        this.formData.accountCurrency
+      );
     },
   },
 };
