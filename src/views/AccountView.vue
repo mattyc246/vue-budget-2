@@ -1,10 +1,7 @@
 <template>
   <div class="account-view__container">
     <AccountSummary :transactions="transactions" :account="account" />
-    <h2
-      class="account-view__no-transaction-warning"
-      v-if="transactionCount === 0"
-    >
+    <h2 class="text-center my-10" v-if="transactionCount === 0">
       No Transactions Yet!
     </h2>
     <div v-else>
@@ -21,13 +18,13 @@
 <script>
 import * as fb from "../utils/firebase";
 import TransactionTable from "../components/TransactionTable";
-import AccountSummary from "../components/AccountSummary"
+import AccountSummary from "../components/AccountSummary";
 
 export default {
   name: "AccountView",
   components: {
     TransactionTable,
-    AccountSummary
+    AccountSummary,
   },
   data() {
     return {
@@ -45,11 +42,10 @@ export default {
     const accountId = this.$route.params.id;
 
     this.fetchTransactions(accountId);
-    this.fetchAccount(accountId)
+    this.fetchAccount(accountId);
   },
   methods: {
     fetchTransactions(accountId) {
-
       fb.transactionsCollection
         .where("accountId", "==", accountId)
         .onSnapshot((snapshot) => {
@@ -61,13 +57,13 @@ export default {
           });
         });
     },
-    fetchAccount(accountId){
-      fb.accountsCollection.doc(accountId).onSnapshot(snapshot => {
-        let account = snapshot.data()
-        account.id = snapshot.id
-        this.account = account
-      })
-    }
+    fetchAccount(accountId) {
+      fb.accountsCollection.doc(accountId).onSnapshot((snapshot) => {
+        let account = snapshot.data();
+        account.id = snapshot.id;
+        this.account = account;
+      });
+    },
   },
 };
 </script>
@@ -78,13 +74,6 @@ export default {
   height: 100%;
   overflow-y: scroll;
   position: relative;
-}
-
-.account-view__no-transaction-warning {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .account-view__search {
