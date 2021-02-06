@@ -24,14 +24,22 @@
         }}</v-icon>
       </v-chip>
     </template>
+    <template v-slot:[`item.actions`]="{ item }">
+      <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
+      <DeleteTransaction :transactionId="item.id" />
+    </template>
   </v-data-table>
 </template>
 
 <script>
 import moment from "moment";
+import DeleteTransaction from "../components/DeleteTransaction"
 
 export default {
   name: "TransactionTable",
+  components: {
+    DeleteTransaction
+  },
   props: {
     transactions: {
       type: Array,
@@ -49,6 +57,7 @@ export default {
         { text: "Type", value: "type" },
         { text: "Amount", value: "amount" },
         { text: "Transaction Date", value: "createdOn" },
+        { text: "Actions", value: "actions", sortable: false },
       ],
     };
   },
