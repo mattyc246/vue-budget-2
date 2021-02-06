@@ -1,5 +1,5 @@
 <template>
-  <div class="newaccount__container d-flex flex-column justify-center align-center">
+  <div class="newaccount__container">
     <NewAccountForm />
   </div>
 </template>
