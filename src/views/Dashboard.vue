@@ -5,13 +5,11 @@
       <v-col cols="12" md="6">
         <DashSummary />
       </v-col>
-      <v-col cols="6" md="4" v-if="hasAccounts">
-        <DashCard
-          :account="account"
-          :key="account.id"
-          v-for="account in accounts"
-        />
-      </v-col>
+      <v-row v-if="hasAccounts">
+        <v-col cols="6" md="4" :key="account.id" v-for="account in accounts">
+          <DashCard :account="account" />
+        </v-col>
+      </v-row>
     </v-row>
   </v-container>
 </template>
@@ -29,13 +27,13 @@ export default {
   },
   computed: {
     ...mapState("Account", ["accounts"]),
-    hasAccounts(){
-      if(!this.accounts){
-        return false
+    hasAccounts() {
+      if (!this.accounts) {
+        return false;
       } else {
-        return this.accounts.length > 0
+        return this.accounts.length > 0;
       }
-    }
+    },
   },
 };
 </script>

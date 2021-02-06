@@ -28,9 +28,7 @@
             <v-btn class="mx-3" color="warning" elevation="5" icon large
               ><v-icon>mdi-pencil</v-icon></v-btn
             >
-            <v-btn class="mx-3" color="error" elevation="5" icon large
-              ><v-icon>mdi-trash-can</v-icon></v-btn
-            >
+            <DeleteAccount :accountId="account.id" />
           </div>
         </v-card>
       </v-col>
@@ -40,9 +38,13 @@
 
 <script>
 import { mapState } from "vuex";
+import DeleteAccount from "../components/DeleteAccount";
 
 export default {
   name: "AccountsOverview",
+  components: {
+    DeleteAccount,
+  },
   computed: {
     ...mapState("Account", ["accounts"]),
   },
