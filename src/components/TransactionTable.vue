@@ -25,7 +25,7 @@
       </v-chip>
     </template>
     <template v-slot:[`item.actions`]="{ item }">
-      <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
+      <EditTransaction :transaction="item" />
       <DeleteTransaction :transactionId="item.id" />
     </template>
   </v-data-table>
@@ -33,12 +33,14 @@
 
 <script>
 import moment from "moment";
-import DeleteTransaction from "../components/DeleteTransaction"
+import DeleteTransaction from "../components/DeleteTransaction";
+import EditTransaction from "../components/EditTransaction";
 
 export default {
   name: "TransactionTable",
   components: {
-    DeleteTransaction
+    DeleteTransaction,
+    EditTransaction,
   },
   props: {
     transactions: {
