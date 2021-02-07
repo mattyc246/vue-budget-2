@@ -43,5 +43,15 @@ export const AccountModule = {
           commit("setAccounts", userAccounts);
         });
     },
+    async updateAccount({ dispatch }, account) {
+      await fb.accountsCollection.doc(account.id).update({
+        name: account.name,
+        type: account.type,
+        currency: account.currency,
+        boxColor: account.boxColor,
+      });
+
+      dispatch("fetchUserAccounts", { uid: fb.auth.currentUser.uid });
+    },
   },
 };
