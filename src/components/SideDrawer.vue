@@ -72,6 +72,11 @@ export default {
           to: "/transactions/new",
           icon: "mdi-credit-card-plus",
         },
+        {
+          title: "Account Settings",
+          to: "/settings",
+          icon: "mdi-account-cog",
+        },
       ],
       right: null,
     };
