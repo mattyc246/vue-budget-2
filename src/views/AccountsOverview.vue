@@ -6,7 +6,7 @@
       >
     </div>
     <v-row>
-      <v-col cols="6" md="4" :key="account.id" v-for="account in accounts">
+      <v-col cols="12" md="4" :key="account.id" v-for="account in accounts">
         <v-card
           class="pa-5 my-5 d-flex flex-column align-center"
           elevation="10"
