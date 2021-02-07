@@ -14,7 +14,7 @@
         <h2>Account Summary</h2>
         <v-divider class="my-3"></v-divider>
         <v-row>
-          <v-col cols="6" md="3">
+          <v-col cols="12" md="3">
             <v-card class="pa-3 text-center" elevation="5">
               <h4 class="secondary--text">Account Balance:</h4>
               <v-divider class="my-2"></v-divider>
@@ -23,21 +23,21 @@
               </h3>
             </v-card>
           </v-col>
-          <v-col cols="6" md="3">
+          <v-col cols="12" md="3">
             <v-card class="pa-3 text-center" elevation="5">
               <h4 class="secondary--text">Total Transactions:</h4>
               <v-divider class="my-2"></v-divider>
               <h3>{{ transactionCount }}</h3>
             </v-card>
           </v-col>
-          <v-col cols="6" md="3">
+          <v-col cols="12" md="3">
             <v-card class="pa-3 text-center" elevation="5">
               <h4 class="primary--text">Income Total:</h4>
               <v-divider class="my-2"></v-divider>
               <h3>{{ account.currency }} {{ incomeTotal | formatCurrency }}</h3>
             </v-card>
           </v-col>
-          <v-col cols="6" md="3">
+          <v-col cols="12" md="3">
             <v-card class="pa-3 text-center" elevation="5">
               <h4 class="error--text">Outgoings Total:</h4>
               <v-divider class="my-2"></v-divider>

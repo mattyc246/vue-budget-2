@@ -6,13 +6,13 @@
     </div>
     <v-divider class="my-5"></v-divider>
     <v-row>
-      <v-col cols="4">
+      <v-col cols="12" md="4">
         <v-card class="pa-3 text-center" elevation="3" color="secondary">
           <h5 class="mb-4">Transaction Count:</h5>
           <h3 class="success--text">{{ totalTransactions }}</h3>
         </v-card>
       </v-col>
-      <v-col cols="4">
+      <v-col cols="12" md="4">
         <v-card class="pa-3 text-center" elevation="3" color="error">
           <h5 class="mb-4">Total Outgoing:</h5>
           <h3 class="secondary--text">
@@ -20,7 +20,7 @@
           </h3>
         </v-card>
       </v-col>
-      <v-col cols="4">
+      <v-col cols="12" md="4">
         <v-card class="pa-3 text-center" elevation="3" color="primary">
           <h5 class="mb-4">Total Income:</h5>
           <h3 class="secondary--text">RM {{ totalIncome | formatCurrency }}</h3>
