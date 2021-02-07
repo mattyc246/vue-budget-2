@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Dashboard from "../views/Dashboard.vue";
+import Settings from "../views/Settings.vue"
 import AccountsOverview from "../views/AccountsOverview.vue";
 import AccountView from "../views/AccountView.vue";
 import NewTransaction from "../views/NewTransaction.vue";
@@ -20,6 +21,14 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/settings",
+    name: "Settings",
+    component: Settings,
     meta: {
       requiresAuth: true,
     },
