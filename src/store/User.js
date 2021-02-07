@@ -25,20 +25,29 @@ export const UserModule = {
 
       dispatch("fetchUserProfile", user);
     },
-    async logout({ commit }){
-      await fb.auth.signOut()
+    async logout({ commit }) {
+      await fb.auth.signOut();
 
-      commit('setUserProfile', {})
-      router.push('/')
+      commit("setUserProfile", {});
+      router.push("/");
     },
     async fetchUserProfile({ commit }, user) {
       const userProfile = await fb.usersCollection.doc(user.uid).get();
 
       commit("setUserProfile", userProfile.data());
 
-      if(router.currentRoute.path === '/'){
-        router.push('/dashboard')
+      if (router.currentRoute.path === "/") {
+        router.push("/dashboard");
       }
+    },
+    async updateProfile({ dispatch }, user) {
+      const userId = fb.auth.currentUser.uid;
+
+      await fb.usersCollection.doc(userId).update({
+        name: user.name,
+      });
+
+      dispatch("fetchUserProfile", { uid: userId });
     },
   },
 };
