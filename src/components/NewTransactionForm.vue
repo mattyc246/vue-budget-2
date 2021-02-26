@@ -30,7 +30,7 @@
         <v-col :key="key" cols="4" v-for="key in keypad">
           <v-btn
             class="center-button"
-            color="secondary"
+            color="success"
             @click.stop="handleKeypad(key)"
           >
             {{ key }}
@@ -62,7 +62,7 @@ export default {
         amount: "0",
       },
       keypad: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, "del"],
-      transactionType: ["Income", "Outgoing"],
+      transactionType: ["Income", "Outgoing", "Transfer In", "Transfer Out"],
     };
   },
   computed: {
@@ -99,9 +99,9 @@ export default {
           accountId: accountNo,
           description: description,
           type: type,
-          amount: type === "Income" ? +amount : -amount,
+          amount: type === "Income" || type === "Transfer In" ? +amount : -amount,
           userId: fb.auth.currentUser.uid,
-        })
+        })             
         .then(() => {
           this.transactionData = {
             description: "",

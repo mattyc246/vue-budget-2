@@ -9,7 +9,7 @@
     <v-icon class="mb-5">{{ account.type }}</v-icon>
     <h4>{{ account.name }}</h4>
     <h3 class="my-5">Balance:</h3>
-    <h2 class="primary--text">
+    <h2>
       {{ account.currency }} {{ totalBalance | formatCurrency }}
     </h2>
   </v-card>
