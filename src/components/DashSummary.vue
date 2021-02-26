@@ -2,28 +2,26 @@
   <v-card class="pa-5" elevation="10" outlined>
     <div class="d-flex align-center justify-space-between">
       <h2>Overall Balance:</h2>
-      <h2 class="primary--text">RM {{ totalBalance | formatCurrency }}</h2>
+      <h2 class="success--text">RM {{ totalBalance | formatCurrency }}</h2>
     </div>
     <v-divider class="my-5"></v-divider>
     <v-row>
       <v-col cols="12" md="4">
-        <v-card class="pa-3 text-center" elevation="3" color="secondary">
+        <v-card class="pa-3 text-center" elevation="3" color="primary">
           <h5 class="mb-4">Transaction Count:</h5>
-          <h3 class="success--text">{{ totalTransactions }}</h3>
+          <h3>{{ totalTransactions }}</h3>
         </v-card>
       </v-col>
       <v-col cols="12" md="4">
         <v-card class="pa-3 text-center" elevation="3" color="error">
           <h5 class="mb-4">Total Outgoing:</h5>
-          <h3 class="secondary--text">
-            RM {{ totalOutgoing | formatCurrency }}
-          </h3>
+          <h3>RM {{ totalOutgoing | formatCurrency }}</h3>
         </v-card>
       </v-col>
       <v-col cols="12" md="4">
-        <v-card class="pa-3 text-center" elevation="3" color="primary">
+        <v-card class="pa-3 text-center" elevation="3" color="success">
           <h5 class="mb-4">Total Income:</h5>
-          <h3 class="secondary--text">RM {{ totalIncome | formatCurrency }}</h3>
+          <h3>RM {{ totalIncome | formatCurrency }}</h3>
         </v-card>
       </v-col>
     </v-row>
