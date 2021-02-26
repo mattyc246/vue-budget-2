@@ -94,7 +94,7 @@ export default {
             : this.$props.transaction.description,
         type: this.type !== "" ? this.type : this.$props.transaction.type,
         amount:
-          this.amount !== "0" ? this.amount : this.$props.transaction.amount,
+          this.amount !== "0" ? this.type === this.amount : this.$props.transaction.amount,
       });
 
       this.dialog = false;
