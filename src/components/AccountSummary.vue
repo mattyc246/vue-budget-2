@@ -80,7 +80,7 @@ export default {
     },
     incomeTotal() {
       let amounts = this.transactions
-        .filter((t) => t.type == "Income")
+        .filter((t) => t.type == "Income" || t.type == "Transfer In")
         .map((t) => t.amount);
 
       let sum = amounts.reduce((a, b) => a + b, 0);
@@ -89,7 +89,7 @@ export default {
     },
     outgoingsTotal() {
       let amounts = this.transactions
-        .filter((t) => t.type == "Outgoing")
+        .filter((t) => t.type == "Outgoing" || t.type == "Transfer Out")
         .map((t) => t.amount);
 
       let sum = amounts.reduce((a, b) => a + b, 0);

@@ -16,10 +16,16 @@
       {{ item.amount | formatCurrency }}
     </template>
     <template v-slot:[`item.type`]="{ item }">
-      <v-chip :color="item.type === 'Income' ? 'primary' : 'error'">
+      <v-chip :color="item.type === 'Income'
+            ? 'success'
+            : item.type === 'Transfer In' || item.type === 'Transfer Out'
+            ? 'warning'
+            : 'error'">
         <v-icon>{{
           item.type === "Income"
             ? "mdi-arrow-bottom-left-thick"
+            : item.type === "Transfer In" || item.type === "Transfer Out"
+            ? "mdi-arrow-top-right-bottom-left-bold"
             : "mdi-arrow-top-right-thick"
         }}</v-icon>
       </v-chip>

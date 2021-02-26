@@ -65,7 +65,7 @@
 
 <script>
 import { mapState } from "vuex";
-import * as fb from "../utils/firebase"
+import * as fb from "../utils/firebase";
 
 export default {
   name: "EditTransaction",
@@ -80,20 +80,24 @@ export default {
       dialog: false,
       description: "",
       type: "",
-      amount: '0',
+      amount: "0",
       keypad: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, "del"],
-      transactionType: ["Income", "Outgoing"],
+      transactionType: ["Income", "Outgoing", "Transfer In", "Transfer Out"],
     };
   },
   methods: {
     async updateTransaction() {
       await fb.transactionsCollection.doc(this.$props.transaction.id).update({
-        description: this.description !== '' ? this.description : this.$props.transaction.description,
-        type: this.type !== '' ? this.type : this.$props.transaction.type,
-        amount: this.amount !== '0' ? this.amount : this.$props.transaction.amount,
-      })
+        description:
+          this.description !== ""
+            ? this.description
+            : this.$props.transaction.description,
+        type: this.type !== "" ? this.type : this.$props.transaction.type,
+        amount:
+          this.amount !== "0" ? this.amount : this.$props.transaction.amount,
+      });
 
-      this.dialog = false
+      this.dialog = false;
     },
     handleKeypad(key) {
       if (key === "del") {
