@@ -4,6 +4,9 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
 import { auth } from "./utils/firebase"
+import wb from "./registerServiceWorker";
+
+Vue.prototype.$workbox = wb;
 
 Vue.config.productionTip = false
 

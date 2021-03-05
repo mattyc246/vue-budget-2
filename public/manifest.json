@@ -1,0 +1,21 @@
+{
+  "short_name": "Accounts",
+  "name": "Matthew Cross | Accounts",
+  "icons": [
+    {
+      "src": "/img/icons/android-icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/img/icons/apple-icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#3e3e3e",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#3e3e3e"
+}
